@@ -9,19 +9,19 @@ Noeud de synchronisation entre le FS et LeekWars
 
 ##Exemple de sortie
 
-  [FILE] test import et watch
-  [IA] Recuperation ia 131897
-  [FILE] TEST_classes import et watch
-  [IA] Recuperation ia 132492
-  [FILE] TEST defense import et watch
-  [IA] Recuperation ia 132870
-  [FILE] TEST stalactite import et watch
-  [FILE] srcs/TEST defense.ls changed
-  [AI] sauvegarde 132492
-  [AI] Compilation reussie
-  [FILE] srcs/TEST defense.ls changed
-  [AI] sauvegarde 132492
-  [IA] Erreur l 7 "+" : Cet opérateur est inattendu ici
-  [FILE] srcs/TEST defense.ls changed
-  [AI] sauvegarde 132492
-  [AI] Compilation reussie
+    [FILE] test import et watch
+    [IA] Recuperation ia 131897
+    [FILE] TEST_classes import et watch
+    [IA] Recuperation ia 132492
+    [FILE] TEST defense import et watch
+    [IA] Recuperation ia 132870
+    [FILE] TEST stalactite import et watch
+    [FILE] srcs/TEST defense.ls changed
+    [AI] sauvegarde 132492
+    [AI] Compilation reussie
+    [FILE] srcs/TEST defense.ls changed
+    [AI] sauvegarde 132492
+    [IA] Erreur l 7 "+" : Cet opérateur est inattendu ici
+    [FILE] srcs/TEST defense.ls changed
+    [AI] sauvegarde 132492
+    [AI] Compilation reussie
