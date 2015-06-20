@@ -36,7 +36,7 @@ LW.api = function( apiRequest, postData, callback ) {
   );
 }
 
-// API vite fait d'évenements custom
+/* API vite fait d'évenements custom
 LW.on = function( event, options, callback ) {
   if( event === 'fightEnd' ) {
     LW.api( 'fight/get', { fight_id : options.fight_id }, function( data ) {
@@ -51,7 +51,7 @@ LW.on = function( event, options, callback ) {
       }
     });
   }
-}
+}//*/
 
 LW.login = function( login, password, callback ){
   console.log( "[LOGIN] " + login + "..." );
