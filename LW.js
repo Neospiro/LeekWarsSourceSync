@@ -4,11 +4,10 @@ var API_SERVER = 'http://leekwars.com/api/';
 
 // Nombre de combats à garder en stock
 
-var connection_retries=50;
-
-
 // Objet d'interface avec le jeu
 var LW = {};
+
+LW.requestRetries = 50;
 
 // Lance une requête sur l'API LeekWars
 // apiRequest : requête API
@@ -26,7 +25,7 @@ LW.api = function( apiRequest, postData, callback ) {
       if (!error && response.statusCode === 200) {
         if( callback !== undefined ) callback( JSON.parse(body) );
       } else {
-        if(connection_retries-- >0){
+        if(LW.requestRetries-- >0){
            console.log( 'API call ' + apiRequest + ' failed, tried a new one' );
           setTimeout( function(){LW.api(apiRequest, postData, callback )},5000);
         }else {
@@ -53,5 +52,36 @@ LW.on = function( event, options, callback ) {
     });
   }
 }
+
+LW.login = function(login, password, callback){
+  console.log("[LOGIN] "+login+"...");
+  LW.api( 'farmer/login', { login: login, password:password, keep:'on' }, callback);
+}
+
+LW.ai={};
+
+LW.ai.save = function(ai_id, code, callback){
+  console.log('[AI] sauvegarde '+ai_id);
+  LW.api("ai/save/", {'ai_id':ai_id, 'code':code}, callback);
+}
+
+LW.ai.getList = function (callback){
+    //console.log("[IA] Recuperation liste des IA");
+    LW.api("ai/get-farmer-ais", {}, callback);
+}
+
+LW.ai.get = function (ai_id, callback){
+    //console.log('[IA] Recuperation ia '+ ai_id);
+    LW.api("ai/get/", {'ai_id':ai_id}, callback);
+}
+
+LW.lang = {};
+
+LW.lang.get = function (file, callback){
+  //console.log('[LANG] Recuperation codes erreurs fr');
+  LW.api("lang/get/", {'file': file, 'lang':'fr'}, callback);
+}
+
+
 
 module.exports=LW;

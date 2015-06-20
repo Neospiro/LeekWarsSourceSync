@@ -1,86 +1,81 @@
 var LW=require('./LW.js');
 var fs = require('fs');
 
-function connect(login, password, callback){
-  console.log("[LOGIN] "+login+"...");
-  LW.api( 'farmer/login', { login: login, password:password, keep:'on' }, callback);
-}
+var dir = '.';
 
-function get_ais(callback){
-    console.log("[IA] Recuperation liste des IA");
-    LW.api("ai/get-farmer-ais", {}, callback);
-}
+var compilationErrorTexts={};
 
-function get_ai(ai_id, callback){
-    console.log('[IA] Recuperation ia '+ ai_id);
-    LW.api("ai/get/", {'ai_id':ai_id}, callback);
-}
-
-function get_lang_java_compilation(callback){
-    console.log('[LANG] Recuperation codes erreurs fr');
-  LW.api("lang/get/", {file:'java_compilation', 'lang':'fr'}, callback);
-}
-
-function save_ai(ai_id, code, callback){
-    console.log('[AI] sauvegarde '+ai_id);
-  LW.api("ai/save/", {'ai_id':ai_id, 'code':code}, callback);
-}
+var config = JSON.parse(fs.readFileSync('config.json'));
+var dir = config.dir;
 
 
-var compilation_error_texts={};
 
 
-connect('login', 'password',function( data ) {
-    
-    get_lang_java_compilation(function(data){
-      compilation_error_texts=data.lang;
-    });
-
-    var farmer=data.farmer;
-    var farmerid=farmer.id;
-    var farmername=farmer.name;
-
+LW.login(config.login, config.password,function( dataFarmer ) {
+  if(!dataFarmer.success){
+    console.log('Connection echouée');
+  }
+  else{
+    var farmer=dataFarmer.farmer;
+ 
+     LW.lang.get('java_compilation',function(dataLang){
+       compilationErrorTexts=dataLang.lang;
+     });
+ 
+     dir += '/'+farmer.name;
+ 
+     try{
+       fs.mkdirSync(dir);
+     } catch(e){
+       if(e.code='EEXIST')
+         console.log('[ATTENTION] Les sources locales sont écrasées');
+       else console.log('Erreur non gérée', e);
+     }
+ 
+ 
     //* Recupération des ia
-    get_ais(function(data){
-      var ais = data.ais;
+    LW.ai.getList(function(dataAiList){
+      var aisList = dataAiList.ais;
       var timetowait=0;
-      for(var ai in ais){
+      for(var ai in aisList){
         setTimeout((function(ai){ return function(){
           
           // Téléchargement du code d'une ia
-          get_ai(ai.id, function(data){
-            var file ="srcs/"+data.ai.name+'.ls';
+          LW.ai.get(ai.id, function(dataAi){
+            var ai=dataAi.ai;
+            var file =dir+'/'+ai.name+'.ls';
             
             //Ecriture dans le fichier
-            fs.writeFile(file, data.ai.code, function(err) {
-                if(err) {
-                    return console.log(err);
-                }
-                console.log('[FILE] '+data.ai.name+' import et watch');
-                //Declaration du watcher
-                fs.watchFile(file, (function(ai_id,filename){
-                  return function (curr, prev) {
-                    console.log('[FILE] ' + filename + ' changed');
+            fs.writeFile(file, ai.code, function(err) {
+              if(err) {
+                  return console.log('Erreur en écrivant le fichier '+file+' : ',err);
+              }
+              console.log('[FILE] '+file+' pret');
+              //Declaration du watcher
+              fs.watchFile(file, (function(ai_id,filename){
+                return function (curr, prev) {
+                  console.log('[FILE] ' + filename + ' actualisé');
+                  if(config.debug===true)
+                    console.log(prev,'=====>>>>', curr);
 
-                    //Lecture du nouveau code
-                    var code=fs.readFileSync(filename);
-                    //Envoi au serveur
-                    save_ai(ai_id, code, function(data){
-                      var result=data.result[0];
-                      if(result[0]!==2){
-                        console.log('[IA] Erreur l '+result[3]+' "'+result[5]+'" : '+compilation_error_texts[result[6]])
-                      } else {
-                        console.log('[AI] Compilation reussie');
-                      }
-                    });
-
-                  };
-                })(ai.id, file));
-
+                  //Lecture du nouveau code
+                  var code=fs.readFileSync(filename);
+                  //Envoi au serveur
+                  LW.ai.save(ai_id, code, function(data){
+                    var result=data.result[0];
+                    if(result[0]!==2){
+                      errorText=(compilationErrorTexts[result[6]])===undefined)?result[6]:compilationErrorTexts[result[6]]);
+                      console.log('[IA] '+filename+' Erreur l '+result[3]+' "'+result[5]+'" : '+errorText);
+                    } else {
+                      console.log('[AI] '+filename+' Compilation reussie');
+                    }
+                  });
+                };
+              })(ai.id, file));
             });
-
           });
-        };})(ais[ai]), 250*timetowait++);
+        };})(aisList[ai]), 250*timetowait++);
       }
     });
+  }
 });

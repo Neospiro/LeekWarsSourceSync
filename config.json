@@ -1,0 +1,8 @@
+{
+	"login":"",
+	"password":"",
+	
+	"dir":".", // Un repertoire du nom de votre eleveur sera créé
+
+	"debug":false
+}
