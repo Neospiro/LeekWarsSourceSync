@@ -53,35 +53,33 @@ LW.on = function( event, options, callback ) {
   }
 }
 
-LW.login = function(login, password, callback){
-  console.log("[LOGIN] "+login+"...");
-  LW.api( 'farmer/login', { login: login, password:password, keep:'on' }, callback);
+LW.login = function( login, password, callback ){
+  console.log( "[LOGIN] " + login + "..." );
+  LW.api( 'farmer/login', { login: login, password: password, keep: 'on' }, callback );
 }
 
-LW.ai={};
+LW.ai = {} ;
 
-LW.ai.save = function(ai_id, code, callback){
-  console.log('[AI] sauvegarde '+ai_id);
-  LW.api("ai/save/", {'ai_id':ai_id, 'code':code}, callback);
-}
+  LW.ai.save = function( ai_id, code, callback ){
+    console.log( '[AI] sauvegarde ' + ai_id );
+    LW.api( "ai/save/", { 'ai_id': ai_id, 'code': code }, callback );
+  }
 
-LW.ai.getList = function (callback){
+  LW.ai.getList = function ( callback ){
     //console.log("[IA] Recuperation liste des IA");
-    LW.api("ai/get-farmer-ais", {}, callback);
-}
+    LW.api( "ai/get-farmer-ais", {}, callback );
+  }
 
-LW.ai.get = function (ai_id, callback){
+  LW.ai.get = function (ai_id, callback){
     //console.log('[IA] Recuperation ia '+ ai_id);
-    LW.api("ai/get/", {'ai_id':ai_id}, callback);
-}
+    LW.api( "ai/get/", { 'ai_id': ai_id }, callback );
+  }
 
-LW.lang = {};
+LW.lang = {} ;
 
-LW.lang.get = function (file, callback){
-  //console.log('[LANG] Recuperation codes erreurs fr');
-  LW.api("lang/get/", {'file': file, 'lang':'fr'}, callback);
-}
-
-
+  LW.lang.get = function ( file, callback ){
+    //console.log('[LANG] Recuperation codes erreurs fr');
+    LW.api( "lang/get/", { 'file': file, 'lang': 'fr' }, callback );
+  }
 
 module.exports=LW;
