@@ -1,8 +1,12 @@
 {
+	//Identifiants de connection
 	"login":"",
 	"password":"",
 	
-	"dir":".", // Un repertoire du nom de votre eleveur sera créé
+	// Repertoire de sauvegarde des sources;
+	// Un repertoire du nom de votre eleveur sera créé
+	"dir":".", 
 
+	// Affiche plus de logs, utile pour modifier le programme
 	"debug":false
 }

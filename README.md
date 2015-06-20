@@ -3,25 +3,19 @@ Noeud de synchronisation entre le FS et LeekWars
 
 ##Installer
 * Installez nodeJS
-* Allez dans le dossier de deploy et tapez `npm install request`
-* creez un dossier `srcs` (dossier dans lequel vos sources seront déposées)
+* Allez dans le dossier de deploiement et tapez `npm install request`
+* Complêtez config.json
 * `node LWSS.js`
 
 ##Exemple de sortie
 
-    [FILE] test import et watch
-    [IA] Recuperation ia 131897
-    [FILE] TEST_classes import et watch
-    [IA] Recuperation ia 132492
-    [FILE] TEST defense import et watch
-    [IA] Recuperation ia 132870
-    [FILE] TEST stalactite import et watch
-    [FILE] srcs/TEST defense.ls changed
+    [FILE] ./N3k0/TEST defense.ls pret
+    [FILE] ./N3k0/TEST defense.ls actualisé
     [AI] sauvegarde 132492
-    [AI] Compilation reussie
-    [FILE] srcs/TEST defense.ls changed
+    [AI] ./N3k0/TEST defense.ls Compilation reussie
+    [FILE] ./N3k0/TEST defense.ls actualisé
     [AI] sauvegarde 132492
-    [IA] Erreur l 7 "+" : Cet opérateur est inattendu ici
-    [FILE] srcs/TEST defense.ls changed
+    [IA] ./N3k0/TEST defense.ls Erreur l 21 "qsds" : Variable ou fonction inconnue
+    [FILE] ./N3k0/TEST defense.ls actualisé
     [AI] sauvegarde 132492
-    [AI] Compilation reussie
+    [AI] ./N3k0/TEST defense.ls Compilation reussie
