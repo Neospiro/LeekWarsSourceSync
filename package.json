@@ -1,0 +1,9 @@
+{
+  "name": "leekwars-sourcesync",
+  "version": "1.0.0",
+  "dependencies": {
+    "colors": "^1.1.2",
+    "prompt": "^0.2.14",
+    "request": "^2.58.0"
+  }
+}
