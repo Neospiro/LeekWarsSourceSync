@@ -4,7 +4,7 @@ Si vous fermez le programme, les images persistent, mais le programme s'initiali
 
 ##Installer
 * Installez nodeJS
-* Allez dans le dossier de deploiement et tapez `npm install request prompt`
+* Allez dans le dossier de deploiement et tapez `npm install request prompt colors`
 * `node LWSS.js`
 
 ##Configuration
