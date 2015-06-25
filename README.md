@@ -4,12 +4,13 @@ Si vous fermez le programme, les images persistent, mais le programme s'initiali
 
 ##Installer
 * Installez nodeJS
-* Allez dans le dossier de deploiement et tapez `npm install request prompt colors`
+* Ouvrez une console dans le dossier de deploiement et tapez `npm install request prompt colors`
 * `node LWSS.js`
 
 ##Configuration
-Le fichier config.json contiends les identifiants de connections, le repertoire local où déposer les sources et le booléen "debug" qui permet d'afficher plus de debugs.
-Il n'est pas nesseçaire de le modifier depuis que le script demande les valeurs dont il a besoin lorsqu'il ne les a pas. Si vous ajoutez une valeur au fichier config, le script ne vous la demandera pas.
+Le fichier config.json contiends les identifiants de connexions, le repertoire local où déposer les sources et le booléen "debug" qui permet d'afficher plus de debugs.
+Il n'est pas nesseçaire de le modifier depuis que le script demande les identifiants de connexions lorsqu'il ne les a pas. Si vous ajoutez une valeur au fichier config, le script ne vous la demandera pas.
+Les sources sont déposées dans un dossier du nom de l'eleveur ; il n'est donc pas nesseçaire de préciser un dossier différent pour chaques identifiants de connections en cas de multi-comptes.
 Il est conseillé de ne pas écrire son mot de passe dans un fichier de configuration.
 
     {
