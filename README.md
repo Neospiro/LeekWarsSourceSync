@@ -4,9 +4,20 @@ Si vous fermez le programme, les images persistent, mais le programme s'initiali
 
 ##Installer
 * Installez nodeJS
-* Allez dans le dossier de deploiement et tapez `npm install request`
-* Complêtez config.json
+* Allez dans le dossier de deploiement et tapez `npm install request prompt`
 * `node LWSS.js`
+
+##Configuration
+Le fichier config.json contiends les identifiants de connections, le repertoire local où déposer les sources et le booléen "debug" qui permet d'afficher plus de debugs.
+Il n'est pas nesseçaire de le modifier depuis que le script demande les valeurs dont il a besoin lorsqu'il ne les a pas. Si vous ajoutez une valeur au fichier config, le script ne vous la demandera pas.
+Il est conseillé de ne pas écrire son mot de passe dans un fichier de configuration.
+
+    {
+    	"login":"",
+    	"password":"",
+    	"dir":".", 
+    	"debug":false
+    }
 
 ##Exemple de sortie
 
