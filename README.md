@@ -42,6 +42,7 @@ Le fichier écrase les fichiers à l'initialisation. **N'éditez donc pas vos so
 
 ##Notepad++
 Pour utiliser ce script avec Notepad++ il vous faut installer le plugin NppExec. Ensuite lancez le script en désactivant les couleurs :
+
     node LWSS.js --no-color
 
 
