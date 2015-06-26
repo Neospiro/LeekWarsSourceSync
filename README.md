@@ -45,3 +45,7 @@ Le fichier écrase les fichiers à l'initialisation. *N'éditez donc pas vos sou
 
 ##Todo list
 * Détection de la création de fichier et du renommage dans le dossier
+
+##Remerciement
+L'équipe de [LeekWars](leekwars.com) pour leur jeu révolutionnaire, pédagogique, sans publicité et constemment mis à jour.
+[Maarx](https://github.com/Maarx) pour son début de client d'api `LW.js`.
