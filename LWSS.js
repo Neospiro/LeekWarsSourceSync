@@ -14,6 +14,28 @@ process.stdin.resume();
 //liste des fichiers d'ia
 function startSourceSync(config){
 
+  function createAiPath( farmerDir, ai ){
+  	ai = ai.replace('\\','/');
+  	var path = ai.split('/');
+  	path.pop();
+  	//var ok=false;
+  	while(path.length>0){
+	  	farmerDir = farmerDir+'/'+path.shift();
+	  	try{
+	  		fs.mkdirSync(farmerDir);
+	  	}
+	  	catch(e){
+	  		if(e!='EEXIST'){
+	  			console.log('Erreur non gérée à la création des dossiers');
+	  		}
+	  	}
+	  	//console.log('a '+farmerDir,path);
+	  	//ok=true;
+  	}
+  	//if(ok) process.exit(0);
+
+  }
+
   //Fonction retournant la fonction a appeller lorsqu'un fichier est modifié
   function getAiFileWatcher( ai_id, filename ){
     return function ( curr, prev ) {
@@ -56,6 +78,8 @@ function startSourceSync(config){
         if(ai.valid===false)
         	nameColor=colors.red;
 
+
+        createAiPath(farmerDir, ai.name);
         //Ecriture dans le fichier
         fs.writeFile( file, ai.code, function( err ) {
           if( err ){
