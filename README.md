@@ -43,6 +43,7 @@ Le fichier écrase les fichiers à l'initialisation. **N'éditez donc pas vos so
 
 
 ##Todo list
+* Gérer les / et \ dans les noms de fichiers
 * Détection de la création de fichier et du renommage dans le dossier
 
 
