@@ -1,6 +1,9 @@
 # LeekWarsSourceSync
 Créée une image des fichiers d'IA dans un dossier du nom de votre éleveur. Les fichiers sont envoyé sur LeekWars lorsque vous enregistrez une modification, affichant le message de compilation.
 
+![Exemple de sortie](https://dl.dropboxusercontent.com/u/26136345/Capture_LWSS.PNG)
+
+
 ##Installer
 * Installez [nodeJS](https://nodejs.org/download/)
 
@@ -34,18 +37,20 @@ Il est conseillé de ne pas écrire son mot de passe dans un fichier de configur
 
     }
 
-##Attention
-Le fichier écrase les fichiers à l'initialisation. *N'éditez donc pas vos sources locales lorsque le programme ne tourne pas !*
+Le fichier écrase les fichiers à l'initialisation. **N'éditez donc pas vos sources locales lorsque le programme ne tourne pas !**
 
-##Exemple de sortie
-
-![Exemple de sortie](https://dl.dropboxusercontent.com/u/26136345/Capture_LWSS.PNG)
 
 
 
 ##Todo list
 * Détection de la création de fichier et du renommage dans le dossier
 
-##Remerciement
+
+##Crédits
+Application écrite avec love & fun par [Cyril](neospiro.fr) alias [N3k0](http://leekwars.com/farmer/32347).
+
+###Remerciement
 L'équipe de [LeekWars](leekwars.com) pour leur jeu révolutionnaire, pédagogique, sans publicité et constemment mis à jour.
-[Maarx](https://github.com/Maarx) pour son début de client d'api `LW.js`.
+[Maarx](https://github.com/Maarx) alias [GrandMaitre](http://leekwars.com/farmer/32348) pour son début de client d'api `LW.js`.
+
+
