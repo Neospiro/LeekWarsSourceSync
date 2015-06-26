@@ -103,8 +103,10 @@ function startSourceSync(config){
           process.exit(1);
         }
          else 
-          console.log( colors.italic('[ERREUR] Erreur non gérée'), e );
-          process.exit(1);
+          {
+          	console.log( colors.italic('[ERREUR] Erreur non gérée'), e );
+            process.exit(1);
+           }
        }
    
       var deleteSourcesFunction= function(){
@@ -125,6 +127,7 @@ function startSourceSync(config){
       if(!config.keep_local_sources){
        process.on('SIGINT', deleteSourcesFunction);
        process.on('SIGHUP', deleteSourcesFunction);
+       process.on('SIGTERM', deleteSourcesFunction);
        console.log(colors.red("[ATTENTION]")+' Les sources locales seront supprimées (config.keep_local_sources='+config.keep_local_sources+')');
       } else {
       	console.log(colors.red("[ATTENTION]")+' N\'éditez pas vos fichiers hors-ligne !');
