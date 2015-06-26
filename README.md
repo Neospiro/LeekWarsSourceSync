@@ -40,6 +40,9 @@ Il est conseillé de ne pas écrire son mot de passe dans un fichier de configur
 Le fichier écrase les fichiers à l'initialisation. **N'éditez donc pas vos sources locales lorsque le programme ne tourne pas !**
 
 
+##Notepad++
+Pour utiliser ce script avec Notepad++ il vous faut installer le plugin NppExec. Ensuite lancez le script en désactivant les couleurs :
+    node LWSS.js --no-color
 
 
 ##Todo list
