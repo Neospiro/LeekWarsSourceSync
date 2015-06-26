@@ -2,7 +2,7 @@
 	"login":"",
 	"password":"",
 	
-	"dir":".", 
+	"dir":"./sources",
 
-	"debug":false
+	"keep_local_sources":false
 }

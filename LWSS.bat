@@ -1,0 +1,2 @@
+node LWSS.js
+pause

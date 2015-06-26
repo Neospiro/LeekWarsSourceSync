@@ -1,40 +1,14 @@
 //Librairies
-var LW = require('./LW.js');
-var prompt = require('prompt');
+var LW = require('./lib/LW.js');
+var common=require('./lib/common.js');
 var colors = require('colors/safe');
 var fs = require('fs');
 
 //variables globales
 var compilationErrorTexts = {};
 
-//Fonction lisant config.json et demandant l'username/pass lorsqu'il ne les trouve pas.
-//Appelle le callback lorsqu'il dispose de toutes les infos.
-function getConfig(callback){
-  var config = JSON.parse( fs.readFileSync( 'config.json' ) );
-  prompt.override = config;
-  prompt.message='[PROMPT]';
-  prompt.start();
-  if(config.login=='')
-    console.log("[PROMPT] Ces paramêtres n'ont pas été trouvés dans config.json : ");
-  prompt.get([
-      {name:'login', description:'Login',required: true},
-      {name:'password',hidden:true, description:'Mot de passe',required: true}
-    ], function(err, result){
-      var c = {};
-      //Valeurs par défaut
-      c.debug=false;
-      c.dir='.';
-      if(config.debug!==null)
-        c.debug=config.debug;
-      if(config.dir!==null)
-        c.dir=config.dir;
-      c.login=result.login;
-      c.password=result.password;
-      callback(c);
-    });
-}
 
-
+process.stdin.resume();
 
 //Fonction "principale" du script, initialisant la connection et récupérant la
 //liste des fichiers d'ia
@@ -65,11 +39,11 @@ function startSourceSync(config){
   }
 
   //Fonction retournant une fonction récupérant un fichier d'ia
-  function getAiFileFunction( ai, farmerdir ){ return function(){         
+  function getAiFileFunction( ai, farmerDir ){ return function(){         
       // Téléchargement du code d'une ia
       LW.ai.get( ai.id, function( dataAi ){
         var ai = dataAi.ai;
-        var file = farmerdir + '/' + ai.name + '.ls' ;
+        var file = farmerDir + '/' + ai.name + '.ls' ;
         
         //Ecriture dans le fichier
         fs.writeFile( file, ai.code, function( err ) {
@@ -89,8 +63,12 @@ function startSourceSync(config){
   LW.login( config.login, config.password, function( dataFarmer ) {
     
     if( !dataFarmer.success ){
-      console.log( 'Connection echouée (le programme va se terminer.)' );
-      setTimeout(function(){ /*console.log('fin');*/},1000);
+      console.log( 'Connection echouée' );
+      
+      common.getConfig(function(config){
+        startSourceSync(config);
+      });
+      //setTimeout(function(){ /*console.log('fin');*/},1000);
     }
     else{
       var farmer = dataFarmer.farmer;
@@ -99,26 +77,50 @@ function startSourceSync(config){
          compilationErrorTexts = dataLang.lang ;
        });
    
-       var farmerdir= config.dir+'/'+farmer.name;
+       var farmerDir= config.dir+'/'+farmer.name;
    
        try{
-         fs.mkdirSync(farmerdir);
+         fs.mkdirSync(farmerDir);
        }
        catch(e){
-         if( e.code == 'EEXIST' )
-           console.log( '[ATTENTION] Les sources locales sont écrasées' );
+        if( e.code == 'EEXIST' )
+          console.log( '[ATTENTION] Les sources locales sont écrasées' );
+        if( e.code == 'ENOENT' ){
+          console.log('Le dossier configuré n\'existe pas ! ('+config.dir+')');
+          process.exit(1);
+        }
          else 
-            console.log( 'Erreur non gérée', e );
+          console.log( 'Erreur non gérée', e );
        }
    
-   
+      var deleteSourcesFunction= function(){
+          try{
+            files = fs.readdirSync(farmerDir);
+          }catch(e){
+            process.exit(2);
+          }
+          files.forEach(function(file,index){
+
+              var path = farmerDir + "/" + file;
+              fs.unwatchFile(path);
+              fs.unlinkSync(path);
+          });
+          fs.rmdirSync(farmerDir);
+          process.exit(2); 
+      }
+      if(!config.keep_local_sources){
+       process.on('SIGINT', deleteSourcesFunction);
+       process.on('SIGHUP', deleteSourcesFunction);
+      }
+       //process.on('exit', deleteSourcesFunction);
+
       //* Recupération des ia
       LW.ai.getList( function( dataAiList ){
         var aisList = dataAiList.ais;
         var timetowait = 0;
         
         for(var ai in aisList){
-          setTimeout( getAiFileFunction(aisList[ai], farmerdir), 250*timetowait++ );//setTimeOut
+          setTimeout( getAiFileFunction(aisList[ai], farmerDir), 250*timetowait++ );//setTimeOut
         }
       });
     }
@@ -126,6 +128,6 @@ function startSourceSync(config){
 }
 
 // GO !
-getConfig(function(config){
+common.getConfig(function(config){
   startSourceSync(config);
 });
