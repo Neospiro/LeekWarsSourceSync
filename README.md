@@ -39,16 +39,9 @@ Le fichier écrase les fichiers à l'initialisation. *N'éditez donc pas vos sou
 
 ##Exemple de sortie
 
-    [FILE] ./N3k0/TEST defense.ls pret
-    [FILE] ./N3k0/TEST defense.ls actualisé
-    [AI] sauvegarde 132492
-    [AI] ./N3k0/TEST defense.ls Compilation reussie
-    [FILE] ./N3k0/TEST defense.ls actualisé
-    [AI] sauvegarde 132492
-    [IA] ./N3k0/TEST defense.ls Erreur l 21 "qsds" : Variable ou fonction inconnue
-    [FILE] ./N3k0/TEST defense.ls actualisé
-    [AI] sauvegarde 132492
-    [AI] ./N3k0/TEST defense.ls Compilation reussie
+![Exemple de sortie](https://dl.dropboxusercontent.com/u/26136345/Capture_LWSS.PNG)
+
+
 
 ##Todo list
 * Détection de la création de fichier et du renommage dans le dossier
