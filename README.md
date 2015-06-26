@@ -2,7 +2,7 @@
 Créée une image des fichiers d'IA dans un dossier du nom de votre éleveur. Les fichiers sont envoyé sur LeekWars lorsque vous enregistrez une modification, affichant le message de compilation.
 
 ##Installer
-* Installez nodeJS
+* Installez [nodeJS](https://nodejs.org/download/)
 
 
 ##Utiliser
