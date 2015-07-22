@@ -11,7 +11,8 @@ Créée une image des fichiers d'IA dans un dossier du nom de votre éleveur. Le
 ##Utiliser
 * Si Windows, vous pouvez double cliquer sur `LWSS.bat`
 * Sinon, dans une console, allez dans le dossier d'extration `cd ...`
-    * Puis lancez le programme en tapant `node LWSS.js`
+   * Si vous utilisez LWSS pour la première fois, tapez `npm install`
+   * Puis lancez le programme en tapant `node LWSS.js`
 * Le programme vous demande votre login et mot de passe.
 * Si il parviens à se connecter, il télécharge vos fichier et commence à les surveiller.
 * Vos sources se trouvent alors dans le dossier du nom de votre eleveur situé dans le dossier `sources`.
