@@ -1,8 +1,9 @@
 {
 	"login":"",
 	"password":"",
-	
-	"dir":"./sources",
 
-	"keep_local_sources":false
+	"dir":"./sources",
+	"fileExtension":"lks",
+
+	"keepLocalSources":false
 }

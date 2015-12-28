@@ -19,6 +19,11 @@ Créée une image des fichiers d'IA dans un dossier du nom de votre éleveur. Le
 * Lorsque vous modifiez un fichier, dès la sauvegarde, il est envoyé à LeekWars, qui renvoie en réponse les erreurs de compilations.
 * Lorsque vous voulez cesser l'activité, fermez simplement la console, le programme supprime alors les fichiers locaux.
 
+## Utilisation multiCompte
+* dupliquez le fichier `config.json` en `config-nomDuCompte.json` pour chaque compte au quel vous souhaitez vous connecter.
+* modifiez le contenu des fichiers correspondant en y indiquant vos login / password
+* branchez vous sur un compte avec la commande `node LWSS.js nomDuCompte`
+* sous Windows, vous pouvez duliquer le fichier `LWSS.bat` et y modifier la commande de lancement `node LWSS.js` pour y ajouter le nomDuCompte au quel vous voulez vous connecter.
 
 ##Configuration
 Vous pouvez configurer le comportement du script en modifiant `config.json`.
@@ -29,9 +34,11 @@ Il est conseillé de ne pas écrire son mot de passe dans un fichier de configur
         //Identifiants de connexion
         "login":"",
         "password":"",
-        
+
         //Dossiers ou seront stockées les sources
         "dir":"./sources",
+        // selon l'éditeur externe que vous utilisez, choisissez l'extension adéquoite.
+        "fileExtension":"lks",
 
         //Précisez true ou false si vous voulez oui ou non concerver la copie locale
         "keep_local_sources":false,
