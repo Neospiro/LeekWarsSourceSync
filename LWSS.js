@@ -1,4 +1,4 @@
-//Librairies
+//Libraries
 var LW = require('./lib/LW.js');
 var common=require('./lib/common.js');
 var colors = require('colors/safe');
@@ -14,7 +14,7 @@ process.stdin.resume();
 //liste des fichiers d'ia
 function startSourceSync(config){
 
-  //Fonction retournant la fonction a appeller lorsqu'un fichier est modifié
+  //Fonction retournant la fonction à appeller lorsqu'un fichier est modifié
   function getAiFileWatcher( ai_id, filename ){
     return function ( curr, prev ) {
       console.log( '[FILE] ' + filename + colors.yellow(' actualisé') );
@@ -34,7 +34,7 @@ function startSourceSync(config){
             errorText = compilationErrorTexts[errorText] ;
           console.log( '[IA]   ' + ais[result[2]] + '.ls'+':' + result[3] + colors.red(' "' + result[5] + '" : ' + errorText ));
         } else {
-          console.log( '[AI]   ' + filename + ' '+colors.green('Compilation reussie') );
+          console.log( '[AI]   ' + filename + ' '+colors.green('Compilation réussie') );
         }
       });
     };
@@ -63,9 +63,9 @@ function startSourceSync(config){
           }
           var alignReady = '               ';
           alignReady=alignReady.substr(1,alignReady.length-Math.min(alignReady.length,ai.name.length));
-          console.log( '[FILE]:' + colors.grey(farmerDir+'/')+nameColor(ai.name+'.ls')+ alignReady + colors.cyan(' pret') );
+          console.log( '[FILE]:' + colors.grey(farmerDir+'/')+nameColor(ai.name+'.ls')+ alignReady + colors.cyan(' prêt') );
           
-          //Declaration du watcher
+          //Déclaration du watcher
           fs.watchFile( file, getAiFileWatcher( ai.id, file ));
         });
       });
@@ -76,7 +76,7 @@ function startSourceSync(config){
   LW.login( config.login, config.password, function( dataFarmer ) {
     
     if( !dataFarmer.success ){
-      console.log( 'Connection echouée' );
+      console.log( 'Connexion echouée' );
       
       common.getConfig(function(config){
         startSourceSync(config);
@@ -134,7 +134,7 @@ function startSourceSync(config){
       }
        //process.on('exit', deleteSourcesFunction);
 
-      //* Recupération des ia
+      //* Récupération des ia
       LW.ai.getList( function( dataAiList ){
         var aisList = dataAiList.ais;
         var timetowait = 0;
