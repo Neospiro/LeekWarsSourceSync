@@ -32,7 +32,7 @@ function startSourceSync(config){
           var errorText = result[6] ;
           if( compilationErrorTexts[errorText] !== undefined )
             errorText = compilationErrorTexts[errorText] ;
-          console.log( '[IA]   ' + ais[result[2]] + '.ls'+':' + result[3] + colors.red(' "' + result[5] + '" : ' + errorText ));
+          console.log( '[IA]   ' + ais[result[2]] + config.ext+':' + result[3] + colors.red(' "' + result[5] + '" : ' + errorText ));
         } else {
           console.log( '[AI]   ' + filename + ' '+colors.green('Compilation réussie') );
         }
@@ -48,7 +48,10 @@ function startSourceSync(config){
       		console.log(dataAi);
 
         var ai = dataAi.ai;
-        var file = farmerDir + '/' + ai.name + '.ls' ;
+        var file = farmerDir + '/' + ai.name + config.ext ;
+        var code = ai.code;
+        if (config.autocrlf===true) code = code.replace(/\r\n/g, '\n').replace(/\n/g, '\r\n');
+        if (config.tab!=='\t') code = code.replace(/\t/g, config.tab);
         var nameColor=colors.green;
 
         ais[ai.id]=ai.name;
@@ -57,13 +60,13 @@ function startSourceSync(config){
         	nameColor=colors.red;
 
         //Ecriture dans le fichier
-        fs.writeFile( file, ai.code, function( err ) {
+        fs.writeFile( file, code, config.encoding, function( err ) {
           if( err ){
               return console.log( '[FILE] Erreur en écrivant le fichier ' + file + ' : ', err );
           }
           var alignReady = '               ';
           alignReady=alignReady.substr(1,alignReady.length-Math.min(alignReady.length,ai.name.length));
-          console.log( '[FILE]:' + colors.grey(farmerDir+'/')+nameColor(ai.name+'.ls')+ alignReady + colors.cyan(' prêt') );
+          console.log( '[FILE]:' + colors.grey(farmerDir+'/')+nameColor(ai.name+config.ext)+ alignReady + colors.cyan(' prêt') );
           
           //Déclaration du watcher
           fs.watchFile( file, getAiFileWatcher( ai.id, file ));
