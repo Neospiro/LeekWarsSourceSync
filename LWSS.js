@@ -93,7 +93,8 @@ function startSourceSync(config){
          compilationErrorTexts = dataLang.lang ;
        });
    
-       var farmerDir= config.dir+'/'+farmer.name;
+       var farmerDir= config.dir;
+       if (config.farmer_dir===true) farmerDir += '/'+farmer.name;
    
        try{
          fs.mkdirSync(farmerDir);

@@ -4,9 +4,11 @@
 	
 	"dir":"./sources",
 	"ext":".ls",
+    
 	"encoding":"utf8",
 	"autocrlf":false,
 	"tab":"\t",
 	
-	"keep_local_sources":false
+	"keep_local_sources":false,
+	"farmer_dir":true
 }
