@@ -64,4 +64,8 @@ L'équipe de [LeekWars](leekwars.com) pour leur jeu révolutionnaire, pédagogiq
 [Maarx](https://github.com/Maarx) alias [GrandMaitre](http://leekwars.com/farmer/32348) pour son début de client d'api `LW.js`.
 
 #### Les contributeurs
+
+[La liste des contributions acceptées](https://github.com/Neospiro/LeekWarsSourceSync/pulls?utf8=%E2%9C%93&q=is%3Amerged)
+
 Merci a Thilas, qui a corrigé toutes mes fautes d'orthographes
+> :D On est puriste ou on ne l'est pas !
