@@ -22,7 +22,9 @@ function startSourceSync(config){
       //  console.log( prev, '=====>>>>', curr );
 
       //Lecture du nouveau code
-      var code=fs.readFileSync( filename );
+      var code=fs.readFileSync( filename, config.encoding );
+      if (config.autocrlf===true) code = code.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+      if (config.tab!=='\t') code = code.replace(new RegExp(config.tab, 'g'), '\t');
       //Envoi au serveur
       LW.ai.save( ai_id, code, function( data ){
       	if(config.debug===true)
@@ -50,7 +52,7 @@ function startSourceSync(config){
         var ai = dataAi.ai;
         var file = farmerDir + '/' + ai.name + config.ext ;
         var code = ai.code;
-        if (config.autocrlf===true) code = code.replace(/\r\n/g, '\n').replace(/\n/g, '\r\n');
+        if (config.autocrlf===true) code = code.replace(/\r\n/g, '\n').replace(/[\r\n]/g, '\r\n');
         if (config.tab!=='\t') code = code.replace(/\t/g, config.tab);
         var nameColor=colors.green;
 
