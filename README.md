@@ -56,10 +56,13 @@ Pour utiliser ce script avec Notepad++, il vous faut installer le plugin NppExec
 
     node LWSS.js --no-color
 
+##Améliorer
 
-##Todo list
-* Gérer les / et \ dans les noms de fichiers
-* Détection de la création de fichier et du renommage dans le dossier
+Le code est en Javascript et c'est très proche du LeekScript ! Vous pouvez donc améliorer très facilement cet outil, et même nous proposer vos améliorations, pour que tout le monde puisse en profiter !
+
+Pour ça, commencez par cliquer sur "Fork", en haut à droite, pour avoir votre copie du code, puis, une fois modifié, envoyez nous une "pull request", pour partager votre travail.
+
+> Essayez de nous proposer vos améliorations petit à petit ( 2 nouveautées = 2 pull requests) et construisez vos pull request de façon à ce que seules les lignes concernées par les modifications ne soient modifiées. *Ha et... N'oubliez pas de tester !*
 
 
 ##Crédits
@@ -67,6 +70,12 @@ Application écrite avec love & fun par [Cyril](neospiro.fr) alias [N3k0](http:/
 
 ###Remerciements
 L'équipe de [LeekWars](leekwars.com) pour leur jeu révolutionnaire, pédagogique, sans publicité et constamment mis à jour.
+
 [Maarx](https://github.com/Maarx) alias [GrandMaitre](http://leekwars.com/farmer/32348) pour son début de client d'api `LW.js`.
 
+#### Les contributeurs
 
+[La liste des contributions acceptées](https://github.com/Neospiro/LeekWarsSourceSync/pulls?utf8=%E2%9C%93&q=is%3Amerged)
+
+Merci a Thilas, qui a corrigé toutes mes fautes d'orthographes
+> :D On est puriste ou on ne l'est pas !
