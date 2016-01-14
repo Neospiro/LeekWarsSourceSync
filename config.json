@@ -3,6 +3,12 @@
 	"password":"",
 	
 	"dir":"./sources",
-
-	"keep_local_sources":false
+	"ext":".ls",
+    
+	"encoding":"utf8",
+	"autocrlf":false,
+	"tab":"\t",
+	
+	"keep_local_sources":false,
+	"farmer_dir":true
 }

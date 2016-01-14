@@ -32,10 +32,20 @@ Il est conseillé de ne pas écrire son mot de passe dans un fichier de configur
         
         //Dossier où seront stockées les sources
         "dir":"./sources",
-
+        //Extension ajoutée au nom des fichiers (optionnel, par défaut: .ls)
+        "ext":".ls",
+        
+        //Encodage des fichiers (optionnel, par défaut: utf8)
+        "encoding":"utf8",
+        //Conversion automatique des LF en CRLF (optionnel, par défaut: false)
+        "autocrlf":false,
+        //Conversion des tabulations (optionnel, par défaut: \t, pas de conversion)
+        "tab":"\t",
+        
         //Précisez true ou false si vous voulez oui ou non conserver la copie locale
         "keep_local_sources":false,
-
+        //Précisez true ou false si vous voulez oui ou non stocker les fichiers dans un dossier du nom de votre éleveur
+        "farmer_dir":true
     }
 
 Le fichier écrase les fichiers à l'initialisation. **N'éditez donc pas vos sources locales lorsque le programme ne tourne pas !**
